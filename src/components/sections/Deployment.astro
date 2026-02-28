@@ -1,0 +1,50 @@
+---
+const options = [
+  {
+    title: 'On-premises',
+    desc: 'Deploy on your own hardware or existing Kubernetes clusters. Full data sovereignty. No external telemetry egress.',
+    tag: 'air-gapped option',
+  },
+  {
+    title: 'Private cloud',
+    desc: 'Run in your VPC on any major cloud provider. Tenant-isolated compute and storage. You control the network boundary.',
+    tag: 'your vpc · your keys',
+  },
+  {
+    title: 'Hybrid',
+    desc: 'Ingest and normalize on-prem. Run inference in a controlled cloud environment. Bridge air-gapped and cloud-native.',
+    tag: 'split-plane architecture',
+  },
+];
+---
+
+<section class="py-[5.5rem] border-b border-hikari-border-soft" id="deployment">
+  <div class="wrap">
+    <span class="label rv">Deployment</span>
+    <h2 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(1.5rem,2.8vw,2.1rem)] mb-3.5 rv">
+      Runs where your infrastructure runs.
+    </h2>
+    <p class="desc rv">
+      Hikari is not a SaaS product you send your data to. It is infrastructure software designed
+      to deploy inside your network boundary.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-5">
+      {options.map((opt) => (
+        <article class="border border-hikari-border rounded-lg bg-hikari-bg-2 p-4 rv">
+          <h3 class="text-hikari-text-strong font-semibold text-[1.05rem] leading-[1.2] mb-2">{opt.title}</h3>
+          <p class="text-hikari-muted text-[0.85rem] leading-relaxed">{opt.desc}</p>
+          <span class="inline-block mt-2.5 font-mono text-[0.64rem] text-hikari-accent border border-hikari-accent/25 bg-hikari-accent/[0.08] rounded px-2 py-0.5">
+            {opt.tag}
+          </span>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 820px) {
+    .grid-cols-3 { grid-template-columns: 1fr; }
+  }
+</style>

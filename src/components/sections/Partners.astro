@@ -1,0 +1,65 @@
+---
+const partners = [
+  {
+    title: 'Fiber network operators',
+    desc: 'Reduce triage time, improve dispatch quality, and meet SLA commitments with structured, automated fault analysis across your routes.',
+    tag: 'dark fiber · backbone · metro',
+  },
+  {
+    title: 'Monitoring device manufacturers',
+    desc: 'Differentiate your ALM and OTDR hardware with an intelligent analysis layer. Offer customers a complete monitoring-to-incident solution instead of raw telemetry.',
+    tag: 'value-add for your portfolio',
+  },
+  {
+    title: 'Universities & research networks',
+    desc: "Monitor campus and inter-campus fiber with a small team. Hikari handles the interpretation so you don't need a dedicated NOC specialist on every shift.",
+    tag: 'lean operations',
+  },
+  {
+    title: 'System integrators',
+    desc: 'Bundle Hikari with your monitoring deployments. Deliver a turnkey fiber intelligence solution to your customers with documented integration points.',
+    tag: 'partner deployment',
+  },
+  {
+    title: 'Managed service providers',
+    desc: 'Add proactive fault intelligence to your managed fiber offering. Strengthen SLA posture without adding headcount to your operations team.',
+    tag: 'multi-tenant ready',
+  },
+  {
+    title: 'Sales channel partners',
+    desc: 'You sell the monitoring hardware — pitch Hikari alongside it. Increase deal value with an intelligence layer that makes your hardware more useful from day one.',
+    tag: 'co-sell opportunity',
+  },
+];
+---
+
+<section class="py-[5.5rem] border-b border-hikari-border-soft" id="partners">
+  <div class="wrap">
+    <span class="label rv">Who It's For</span>
+    <h2 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(1.5rem,2.8vw,2.1rem)] mb-3.5 rv">
+      For anyone responsible for fiber uptime.
+    </h2>
+    <p class="desc rv">
+      Hikari adds an intelligence layer to existing OTDR monitoring — whether you operate the network,
+      sell the monitoring equipment, or manage the infrastructure on behalf of others.
+    </p>
+
+    <div class="partner-grid grid grid-cols-3 gap-3 mt-5">
+      {partners.map((p) => (
+        <article class="border border-hikari-border rounded-lg bg-hikari-bg-2 p-4 rv">
+          <h3 class="text-hikari-text-strong font-semibold text-[1.05rem] leading-[1.2] mb-2">{p.title}</h3>
+          <p class="text-hikari-muted text-[0.85rem] leading-relaxed">{p.desc}</p>
+          <span class="inline-block mt-2.5 font-mono text-[0.64rem] text-hikari-accent border border-hikari-accent/25 bg-hikari-accent/[0.08] rounded px-2 py-0.5">
+            {p.tag}
+          </span>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 820px) {
+    .partner-grid { grid-template-columns: 1fr; }
+  }
+</style>

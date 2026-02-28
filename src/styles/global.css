@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-hikari-bg text-hikari-text font-body antialiased;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Grid texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, theme('colors.hikari-border-soft') 79px, theme('colors.hikari-border-soft') 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, theme('colors.hikari-border-soft') 79px, theme('colors.hikari-border-soft') 80px);
+    opacity: 0.35;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 10%, transparent 80%);
+  }
+
+  ::selection {
+    @apply bg-hikari-accent/20 text-white;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply max-w-[1080px] mx-auto px-6;
+  }
+
+  .label {
+    @apply font-mono text-[0.72rem] tracking-[0.1em] uppercase text-hikari-accent mb-3 block;
+  }
+
+  .desc {
+    @apply text-hikari-muted text-[0.95rem] leading-relaxed max-w-[62ch];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center no-underline rounded-[7px] font-body font-semibold text-[0.88rem] px-5 py-3 whitespace-nowrap;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    @apply bg-hikari-accent text-hikari-bg;
+    box-shadow: 0 6px 24px rgba(61, 216, 176, 0.2);
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-hikari-text border border-hikari-border;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(61, 216, 176, 0.25);
+  }
+}
+
+/* Scroll reveal */
+.rv {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.hikari-bg');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.hikari-border');
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.hikari-accent');
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

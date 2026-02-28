@@ -1,0 +1,51 @@
+---
+const columns = [
+  {
+    title: 'Vendor-agnostic telemetry',
+    desc: 'Normalized connectors abstract vendor-specific protocols into a unified event format. Add new telemetry sources without modifying the analysis pipeline.',
+    items: [
+      'SNMP, REST, and streaming connector framework',
+      'Vendor-specific translation at the edge',
+      'No dependency on proprietary telemetry formats',
+    ],
+  },
+  {
+    title: 'Model-agnostic inference',
+    desc: 'The reasoning layer supports swappable inference backends. Deploy with your preferred model provider or run fully local with open-weight models.',
+    items: [
+      'Abstracted inference interface',
+      'No hard dependency on any single model provider',
+      'Local, private cloud, or hosted — your choice',
+    ],
+  },
+];
+---
+
+<section class="py-[5.5rem] border-b border-hikari-border-soft" id="agnostic">
+  <div class="wrap">
+    <span class="label rv">Design Principles</span>
+    <h2 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(1.5rem,2.8vw,2.1rem)] mb-3.5 rv">
+      Vendor-agnostic. Model-agnostic. No lock-in.
+    </h2>
+    <p class="desc rv">
+      Hikari integrates with your existing telemetry infrastructure without replacing it. The analysis layer
+      is decoupled from both the data source and the inference backend.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-5">
+      {columns.map((col) => (
+        <div class="border border-hikari-border rounded-lg bg-hikari-bg-2 p-4 rv">
+          <h3 class="text-hikari-text-strong font-semibold text-[1.05rem] leading-[1.2] mb-2">{col.title}</h3>
+          <p class="text-hikari-muted text-[0.85rem] leading-relaxed">{col.desc}</p>
+          <ul class="list-none mt-3 grid gap-1.5">
+            {col.items.map((item) => (
+              <li class="text-[0.82rem] text-hikari-muted pl-4 relative leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.55rem] before:w-[5px] before:h-[5px] before:rounded-sm before:bg-hikari-accent before:opacity-50">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

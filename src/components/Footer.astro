@@ -1,0 +1,33 @@
+---
+const footerLinks = [
+  { name: 'Architecture', href: '#architecture' },
+  { name: 'Deployment', href: '#deployment' },
+  { name: 'Security', href: '#security' },
+  { name: 'catdev.io', href: 'https://catdev.io', external: true },
+];
+---
+
+<footer class="border-t border-hikari-border-soft py-8">
+  <div class="wrap flex justify-between items-center gap-4 flex-wrap">
+    <div class="flex items-center gap-2.5 text-hikari-dim text-[0.8rem]">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5">
+        <rect x="3" y="6" width="34" height="28" rx="14" stroke="#1e2a3d" stroke-width="1.5" />
+        <polyline points="7,20 13,10 19,30 25,10 33,20" stroke="#3dd8b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="7" cy="20" r="2.2" fill="#3dd8b0" opacity="0.45" />
+        <circle cx="33" cy="20" r="2.2" fill="#3dd8b0" />
+      </svg>
+      <span>Hikari by CATDEV</span>
+    </div>
+    <div class="flex gap-6">
+      {footerLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-hikari-dim no-underline text-[0.8rem] hover:text-hikari-text transition-colors duration-150"
+          {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </div>
+</footer>

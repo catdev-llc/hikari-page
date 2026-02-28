@@ -1,0 +1,97 @@
+---
+const stages = [
+  {
+    id: '01',
+    title: 'Ingest',
+    desc: 'Capture SNMP traps, REST telemetry, and streaming data into a normalized event envelope.',
+    tags: ['multi-vendor', 'deduplication', 'burst guard'],
+  },
+  {
+    id: '02',
+    title: 'Normalize + Enrich',
+    desc: 'Attach topology metadata, circuit context, maintenance windows, and historical trace baselines.',
+    tags: ['digital twin', 'path mapping', 'dependency graph'],
+  },
+  {
+    id: '03',
+    title: 'Trace Analysis',
+    desc: 'Compare live OTDR traces against baseline signatures. Detect breaks, reflections, and attenuation drift.',
+    tags: ['anomaly detection', 'distance estimate', 'pattern fusion'],
+  },
+  {
+    id: '04',
+    title: 'Reason + Score',
+    desc: 'Generate root cause hypotheses with confidence scores and explicit evidence citations.',
+    tags: ['explainable RCA', 'confidence threshold', 'FP suppression'],
+  },
+  {
+    id: '05',
+    title: 'Deliver + Act',
+    desc: 'Ship structured incident packages to messaging platforms, ticketing systems, and dispatch workflows.',
+    tags: ['webhook output', 'PDF report', 'SLA escalation'],
+  },
+];
+---
+
+<section class="py-[5.5rem] border-b border-hikari-border-soft" id="architecture">
+  <div class="wrap">
+    <span class="label rv">Architecture</span>
+    <h2 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(1.5rem,2.8vw,2.1rem)] mb-3.5 rv">
+      Five-stage deterministic and agentic pipeline.
+    </h2>
+    <p class="desc rv">
+      Deterministic stages handle normalization, deduplication, and policy enforcement.
+      Agentic stages interpret traces, compare baselines, and produce structured root cause proposals with
+      confidence scoring and evidence citations.
+    </p>
+
+    <div class="pipeline grid grid-cols-5 gap-2.5 mt-6">
+      {stages.map((stage, i) => (
+        <article class="stage border border-hikari-border rounded-lg bg-hikari-bg-2 p-3.5 flex flex-col gap-1.5 relative rv">
+          <span class="font-mono text-[0.62rem] tracking-[0.08em] uppercase text-hikari-accent opacity-80">Stage {stage.id}</span>
+          <h3 class="text-hikari-text-strong font-semibold text-[0.92rem] leading-[1.2]">{stage.title}</h3>
+          <p class="text-hikari-muted text-[0.78rem] leading-relaxed flex-grow">{stage.desc}</p>
+          <ul class="list-none flex flex-col gap-1.5 mt-auto">
+            {stage.tags.map((tag) => (
+              <li class="font-mono text-[0.65rem] text-hikari-dim border border-hikari-border-soft rounded px-1.5 py-0.5 bg-hikari-bg-1">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-4 border border-hikari-accent/25 rounded-[7px] bg-hikari-accent/[0.08] px-3.5 py-3 text-[#b3ece0] text-[0.85rem] leading-relaxed rv">
+      First alert in <strong class="text-[#d6fff3]">~30 seconds</strong>. Full incident report with root cause, confidence score,
+      and recommended action in <strong class="text-[#d6fff3]">~5 minutes</strong>. All model decisions are logged and auditable.
+    </p>
+  </div>
+</section>
+
+<style>
+  .stage + .stage::before {
+    content: '›';
+    position: absolute;
+    left: -0.45rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: theme('colors.hikari-accent');
+    font-size: 0.9rem;
+    font-family: 'DM Mono', monospace;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 1020px) {
+    .pipeline { grid-template-columns: repeat(3, 1fr); }
+    .stage + .stage::before { display: none; }
+  }
+
+  @media (max-width: 820px) {
+    .pipeline { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 520px) {
+    .pipeline { grid-template-columns: 1fr; }
+  }
+</style>

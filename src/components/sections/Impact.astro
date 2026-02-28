@@ -1,0 +1,56 @@
+---
+const manual = [
+  { label: 'First alert', width: '85%', value: '5–15 min' },
+  { label: 'Root cause', width: '95%', value: '20–40 min' },
+  { label: 'Dispatch brief', width: '70%', value: '30–60 min' },
+];
+
+const hikari = [
+  { label: 'First alert', width: '8%', value: '~30s' },
+  { label: 'Root cause', width: '15%', value: '~5 min' },
+  { label: 'Dispatch brief', width: '18%', value: '~6 min' },
+];
+---
+
+<section class="py-[5.5rem] border-b border-hikari-border-soft" id="impact">
+  <div class="wrap">
+    <span class="label rv">Operational Impact</span>
+    <h2 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(1.5rem,2.8vw,2.1rem)] mb-3.5 rv">
+      Measurable reduction in triage and dispatch time.
+    </h2>
+    <p class="desc rv">
+      Hikari compresses the time between alarm and actionable dispatch brief. The comparison below reflects
+      observed ranges during structured pilot deployments.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-hikari-border-soft rounded-lg overflow-hidden mt-5 rv">
+      <!-- Manual -->
+      <div class="bg-hikari-bg-2 p-5">
+        <h3 class="font-mono text-[0.82rem] tracking-[0.06em] uppercase text-hikari-dim font-medium mb-3">Manual Workflow</h3>
+        {manual.map((row) => (
+          <div class="flex items-center gap-3 mb-2 last:mb-0">
+            <span class="text-[0.8rem] text-hikari-muted w-32 shrink-0">{row.label}</span>
+            <div class="flex-1 h-1.5 bg-hikari-bg-3 rounded-sm overflow-hidden">
+              <div class="h-full bg-hikari-danger/70 rounded-sm" style={`width:${row.width}`}></div>
+            </div>
+            <span class="font-mono text-[0.78rem] text-hikari-text-strong w-[4.5rem] text-right shrink-0">{row.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Hikari -->
+      <div class="bg-hikari-bg-2 p-5">
+        <h3 class="font-mono text-[0.82rem] tracking-[0.06em] uppercase text-hikari-dim font-medium mb-3">With Hikari</h3>
+        {hikari.map((row) => (
+          <div class="flex items-center gap-3 mb-2 last:mb-0">
+            <span class="text-[0.8rem] text-hikari-muted w-32 shrink-0">{row.label}</span>
+            <div class="flex-1 h-1.5 bg-hikari-bg-3 rounded-sm overflow-hidden">
+              <div class="h-full bg-hikari-accent rounded-sm" style={`width:${row.width}`}></div>
+            </div>
+            <span class="font-mono text-[0.78rem] text-hikari-text-strong w-[4.5rem] text-right shrink-0">{row.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

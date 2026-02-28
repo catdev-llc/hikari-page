@@ -1,0 +1,101 @@
+---
+const tags = [
+  'Vendor-Agnostic',
+  'Model-Agnostic',
+  'Deterministic + Agentic Pipeline',
+  'On-Prem Deployable',
+  'Explainable RCA',
+];
+
+const chips = [
+  'reflective spike +5.8 dB',
+  '23.4 km',
+  'probable: wet splice',
+  'confidence: 0.92',
+];
+
+const stats = [
+  { value: '~30s', label: 'first alert' },
+  { value: '~5 min', label: 'full report' },
+  { value: '24/7', label: 'autonomous' },
+];
+---
+
+<section class="py-28 pb-[5.5rem] border-b border-hikari-border-soft" id="top">
+  <div class="wrap grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+    <div class="rv">
+      <span class="label">OTDR Fault Intelligence Layer</span>
+      <h1 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(2rem,4vw,3.2rem)] mb-5">
+        Structured fault analysis for carrier-grade fiber operations.
+      </h1>
+      <p class="desc text-[1.02rem] mb-8">
+        Hikari is a deployable intelligence layer that ingests ALM telemetry and OTDR trace data, runs a deterministic
+        and agentic analysis pipeline, and delivers confidence-scored root cause proposals to your operations team.
+        Vendor-agnostic. Model-agnostic. On-prem ready.
+      </p>
+      <ul class="flex flex-wrap gap-2 list-none">
+        {tags.map((tag) => (
+          <li class="font-mono text-[0.68rem] tracking-[0.04em] text-hikari-dim border border-hikari-border rounded px-2.5 py-1 bg-hikari-bg-1">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <aside class="border border-hikari-border rounded-[10px] bg-hikari-bg-2 overflow-hidden rv" aria-label="Sample incident analysis">
+      <!-- Bar -->
+      <div class="flex items-center justify-between px-3.5 py-2.5 border-b border-hikari-border-soft font-mono text-[0.7rem] text-hikari-muted">
+        <span>Incident #2847 — Route SEA-MTR-12</span>
+        <span class="inline-flex items-center gap-1.5 text-hikari-accent">
+          <span class="w-1.5 h-1.5 rounded-full bg-hikari-accent animate-blink"></span>
+          analysis active
+        </span>
+      </div>
+
+      <!-- Trace SVG -->
+      <div class="p-3 border-b border-hikari-border-soft">
+        <svg viewBox="0 0 440 160" role="img" aria-label="Baseline vs live OTDR trace comparison" class="w-full h-auto block">
+          <g opacity="0.3" stroke="#1e2a3d" stroke-width="1">
+            <line x1="0" y1="20" x2="440" y2="20" />
+            <line x1="0" y1="50" x2="440" y2="50" />
+            <line x1="0" y1="80" x2="440" y2="80" />
+            <line x1="0" y1="110" x2="440" y2="110" />
+            <line x1="0" y1="140" x2="440" y2="140" />
+          </g>
+          <path d="M6 32 L80 42 L140 48 L198 56 L260 65 L320 72 L382 80 L434 90" fill="none" stroke="rgba(61,216,176,0.35)" stroke-width="2" stroke-linecap="round" />
+          <path d="M6 32 L80 42 L140 48 L198 56 L260 65 L298 67 L320 94 L382 118 L434 142" fill="none" stroke="#3dd8b0" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 7">
+            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="4s" repeatCount="indefinite" />
+          </path>
+          <circle cx="320" cy="94" r="5" fill="#e8a84c" />
+        </svg>
+      </div>
+
+      <!-- Chips -->
+      <div class="flex flex-wrap gap-1.5 px-3 py-2 border-b border-hikari-border-soft">
+        {chips.map((chip) => (
+          <span class="font-mono text-[0.64rem] text-hikari-accent border border-hikari-accent/25 bg-hikari-accent/[0.08] rounded px-2 py-0.5">
+            {chip}
+          </span>
+        ))}
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-px bg-hikari-border-soft">
+        {stats.map((stat) => (
+          <div class="bg-hikari-bg-2 py-2.5 px-3 text-center">
+            <strong class="block text-[1.1rem] text-hikari-text-strong tracking-tight">{stat.value}</strong>
+            <span class="text-[0.68rem] text-hikari-dim font-mono">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 520px) {
+    .grid-cols-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

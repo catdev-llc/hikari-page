@@ -1,0 +1,52 @@
+---
+const problems = [
+  { bold: 'Signal overload.', text: 'High event volume from multiple telemetry sources obscures actionable incidents.' },
+  { bold: 'Knowledge bottleneck.', text: 'OTDR trace interpretation depends on specialists who are not always on shift.' },
+  { bold: 'Slow handoff.', text: 'Field teams receive delayed or incomplete fault localization data, extending MTTR.' },
+  { bold: 'Inconsistent output.', text: 'Root cause narratives vary by engineer experience, shift, and workload.' },
+];
+
+const impacts = [
+  { value: '20–40 min', label: 'average manual triage time per incident' },
+  { value: '3+ tools', label: 'operators switch between during correlation' },
+  { value: 'Variable', label: 'RCA quality depending on shift and analyst' },
+  { value: 'SLA exposure', label: 'compounding per minute of delayed dispatch' },
+];
+---
+
+<section class="py-[5.5rem] border-b border-hikari-border-soft" id="problem">
+  <div class="wrap">
+    <span class="label rv">Problem</span>
+    <h2 class="text-hikari-text-strong font-semibold tracking-tight leading-[1.2] text-[clamp(1.5rem,2.8vw,2.1rem)] mb-3.5 rv">
+      Manual OTDR triage is a structural bottleneck.
+    </h2>
+    <p class="desc rv">
+      Most fiber operations teams still correlate alarms by hand, interpret traces manually, and translate findings
+      into dispatch notes under time pressure. The result is slow, inconsistent, and dependent on a small number of
+      senior engineers.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+      <ul class="list-none grid gap-2.5 rv">
+        {problems.map((p) => (
+          <li class="border border-hikari-border-soft rounded-[7px] bg-hikari-bg-1 py-3 px-3.5 pl-9 text-[0.88rem] text-hikari-muted leading-relaxed relative">
+            <span class="absolute left-3 top-3 w-[1.1rem] h-[1.1rem] rounded-full border border-hikari-danger/35 text-hikari-danger font-mono text-[0.72rem] flex items-center justify-center">!</span>
+            <strong class="text-hikari-text-strong font-semibold">{p.bold}</strong> {p.text}
+          </li>
+        ))}
+      </ul>
+
+      <aside class="border border-hikari-border rounded-lg bg-hikari-bg-2 p-4 rv">
+        <h3 class="text-hikari-text-strong font-semibold text-[1.05rem] leading-[1.2] mb-3">Operational cost without automation</h3>
+        <div class="grid gap-2.5">
+          {impacts.map((impact) => (
+            <div class="border border-hikari-border-soft rounded-md bg-hikari-bg-1 py-2.5 px-3">
+              <strong class="block text-[1.15rem] text-hikari-warn">{impact.value}</strong>
+              <span class="text-[0.78rem] text-hikari-muted">{impact.label}</span>
+            </div>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

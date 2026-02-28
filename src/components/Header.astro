@@ -1,0 +1,114 @@
+---
+const navItems = [
+  { name: 'Architecture', href: '#architecture' },
+  { name: 'Deployment', href: '#deployment' },
+  { name: 'Live Demo', href: '#demo' },
+  { name: 'Security', href: '#security' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-hikari-bg/[0.88] backdrop-blur-[14px] border-b border-hikari-border-soft">
+  <div class="wrap flex items-center justify-between h-[3.6rem]">
+    <a class="inline-flex items-center gap-3 no-underline text-hikari-text-strong" href="#top" aria-label="Hikari home">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-[30px] h-[30px]">
+        <rect x="3" y="6" width="34" height="28" rx="14" stroke="#1e2a3d" stroke-width="1.5" />
+        <polyline points="7,20 13,10 19,30 25,10 33,20" stroke="#3dd8b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="7" cy="20" r="2.2" fill="#3dd8b0" opacity="0.45" />
+        <circle cx="33" cy="20" r="2.2" fill="#3dd8b0" />
+      </svg>
+      <span class="font-bold text-[0.88rem] tracking-[0.14em]">HIKARI</span>
+    </a>
+
+    <button
+      class="hidden mob-toggle w-9 h-9 border border-hikari-border rounded-[7px] bg-transparent text-hikari-text cursor-pointer items-center justify-center"
+      type="button"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+
+    <nav>
+      <ul class="hdr-nav flex items-center gap-7 list-none">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class="text-hikari-muted no-underline text-[0.84rem] font-medium hover:text-hikari-text-strong transition-colors duration-150">
+              {item.name}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="#contact"
+            class="text-[0.8rem] text-hikari-accent border border-hikari-accent/25 rounded-md px-3.5 py-1.5 bg-hikari-accent/[0.08] hover:bg-hikari-accent/[0.18] transition-colors duration-150 no-underline font-medium"
+          >
+            Request Demo
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  @media (max-width: 820px) {
+    .mob-toggle {
+      display: inline-flex;
+    }
+
+    .hdr-nav {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 1.5rem;
+      left: 1.5rem;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: rgba(8, 11, 17, 0.96);
+      border: 1px solid theme('colors.hikari-border');
+      border-radius: 8px;
+      padding: 0.65rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .hdr-nav.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    .hdr-nav a {
+      display: block;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid theme('colors.hikari-border-soft');
+      border-radius: 6px;
+      background: theme('colors.hikari-bg-1');
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.mob-toggle');
+  const nav = document.querySelector('.hdr-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 820) {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+</script>
