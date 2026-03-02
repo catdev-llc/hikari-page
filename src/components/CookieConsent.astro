@@ -1,0 +1,53 @@
+---
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 translate-y-full transition-transform duration-300" role="dialog" aria-label="Cookie consent">
+  <div class="border-t border-hikari-border bg-hikari-bg-2/95 backdrop-blur-md">
+    <div class="wrap flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4">
+      <p class="text-hikari-text text-[0.84rem] leading-relaxed max-w-[560px]">
+        We use cookies to improve your experience and analyze site traffic. See our
+        <a href={`${import.meta.env.BASE_URL}privacy`} class="text-hikari-accent hover:underline">Privacy Policy</a>
+        for details.
+      </p>
+      <div class="flex items-center gap-3 shrink-0">
+        <button id="cookie-decline" class="text-hikari-muted hover:text-hikari-text text-[0.82rem] font-medium px-4 py-2 rounded-md border border-hikari-border hover:border-hikari-border transition-colors duration-150 cursor-pointer">
+          Decline
+        </button>
+        <button id="cookie-accept" class="bg-hikari-accent text-hikari-bg text-[0.82rem] font-semibold px-4 py-2 rounded-md cursor-pointer hover:opacity-90 transition-opacity duration-150">
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'hikari-cookie-consent';
+
+  function initCookieConsent() {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    if (!banner || !acceptBtn || !declineBtn) return;
+
+    const consent = localStorage.getItem(STORAGE_KEY);
+
+    if (consent) return;
+
+    // Show banner after a short delay
+    setTimeout(() => {
+      banner.classList.remove('translate-y-full');
+    }, 800);
+
+    function hideBanner(value: string) {
+      localStorage.setItem(STORAGE_KEY, value);
+      banner.classList.add('translate-y-full');
+    }
+
+    acceptBtn.addEventListener('click', () => hideBanner('accepted'));
+    declineBtn.addEventListener('click', () => hideBanner('declined'));
+  }
+
+  initCookieConsent();
+</script>
